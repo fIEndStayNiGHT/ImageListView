@@ -1,0 +1,128 @@
+package com.example.listview;
+
+import data.imagelistviewdata;
+import Adapter.ImageListAdapter;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+	
+	private ListView LV;
+	private ImageListAdapter O;
+	
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        LV = (ListView)findViewById(R.id.listView1);
+        LV.setAdapter(new ImageListAdapter(this));
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    package Adapter;
+
+import com.example.listview.MainActivity;
+import com.example.listview.R;
+
+import data.imagelistviewdata;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class ImageListAdapter extends BaseAdapter {
+
+	private Context context=null;
+	
+	public ImageListAdapter(Context context){
+		this.context = context;
+	}
+	
+	public Context getContext(){
+		return context;
+	}
+	
+	private imagelistviewdata[] data = new imagelistviewdata[]{
+			new imagelistviewdata(R.drawable.i,"1","111"),
+			new imagelistviewdata(R.drawable.main,"2","222"),
+			new imagelistviewdata(R.drawable.news,"3","333")
+	};
+	
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return data.length;
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return data[position];
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+//		TextView tv = null;
+//		if(convertView!=null){
+//			tv=(TextView)convertView;
+//		}else{
+//			tv=new TextView(MainActivity.this);
+//		}
+//		tv.setTextSize(50);
+//		tv.setText((CharSequence) getItem(position));
+//		return tv;
+		
+		LinearLayout cell =null;
+		if(convertView!=null){
+			cell=(LinearLayout)convertView;
+		}else{
+			cell =(LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.imagelistviewcell, null);
+		}
+		
+		ImageView image = (ImageView)cell.findViewById(R.id.image);
+		TextView title = (TextView)cell.findViewById(R.id.title);
+		TextView text = (TextView)cell.findViewById(R.id.text);
+		
+		
+		imagelistviewdata data =(imagelistviewdata) getItem(position);
+		
+		image.setImageResource(data.getImaId());
+		title.setText(data.getTitle());
+		text.setText(data.getText());
+		
+		return cell;
+		
+	}
+	
+
+
+
+
+}
