@@ -1,0 +1,32 @@
+package data;
+
+public class imagelistviewdata {
+	private int imaId;
+	private String title;
+	private String text;
+	public imagelistviewdata(int imaId, String title,String text) {
+		this.imaId=imaId;
+		this.title=title;
+		this.text=text;
+		
+}
+	public int getImaId() {
+		return imaId;
+	}
+	public void setImaId(int imaId) {
+		this.imaId = imaId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+
+}
