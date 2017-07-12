@@ -17,8 +17,23 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+	
+	final ImageListAdapter sk =new ImageListAdapter(this);
+	
         LV = (ListView)findViewById(R.id.listView1);
-        LV.setAdapter(new ImageListAdapter(this));
+	LV.setAdapter(sk);
+        //LV.setAdapter(new ImageListAdapter(this));
+	
+	  LV.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				SlidingListViewdata data =(SlidingListViewdata)sk.getItem(position);
+				Toast.makeText(HomeActivity.this, data.getTitle(), Toast.LENGTH_SHORT).show();
+			}
+       });
     }
     
     
@@ -108,6 +123,9 @@ public class ImageListAdapter extends BaseAdapter {
 		text.setText(data.getText());
 		
 		return cell;
+		
+		//还有一种更加规范的优化方法，需要补充
+		
 		
 	}
 	
